@@ -14,7 +14,7 @@ namespace EF_core_task_4.Entites
         public string Address { get; set; } = null!;
 
         // Navigation Properties
-        public int? ManagerId { get; set; }
+        //public int ManagerId { get; set; }
         public virtual Manager? Manager { get; set; }
 
         public virtual ICollection<Account> Accounts { get; set; } = new HashSet<Account>();
