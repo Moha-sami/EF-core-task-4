@@ -84,3 +84,42 @@ The application operates as an interactive CLI database dashboard containing the
 ├── Migrations                # Automatically generated EF Core Migration scripts
 ├── Program.cs                # Interactive CLI menu-loop & service logic
 └── README.md                 # Project documentation
+
+🛠️ How to Set Up & Run the Project
+Prerequisites
+.NET 8.0 SDK or higher installed.
+
+SQL Server (LocalDB (localdb)\mssqllocaldb or a standard developer instance Express/local server .).
+
+SQL Server Management Studio (SSMS) or Azure Data Studio for viewing the tables.
+
+Setup Instructions
+1.Clone the Repository:
+git clone <your-repository-url>
+cd EF-core-task-4
+2.Configure Connection String:
+Open BankDbContext.cs and ensure the connection string points to your local SQL Server instance. For standard local instances, use:
+optionsBuilder.UseSqlServer("Server=.;Database=NationalBankGroupDb;Trusted_Connection=True;TrustServerCertificate=True;");
+3.Apply Database Migrations & Initial Seed:
+Execute the migration update command using the .NET Core CLI to automatically construct the tables and seed default Branches and Managers:
+dotnet ef database update
+4.Run the Application:
+dotnet run
+📊 Database Verification
+You can easily log into SQL Server Management Studio (SSMS) to inspect the database:
+
+1.Connect to Server Name: . (or your local SQL instance name).
+
+2.Expand Databases ➡️ NationalBankGroupDb.
+
+3.Under Tables, you will find the generated schema structure:
+
+dbo.Branches
+
+dbo.Managers
+
+dbo.Customers (TPH Table storing both Individual and Business customers)
+
+dbo.Accounts
+
+dbo.CustomerAccounts (Join table preserving foreign keys to Customers and Accounts)
